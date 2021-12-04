@@ -6,6 +6,7 @@ import todosRoutes from './Todos/TodosRoutes';
 
 // import components for routes declared in the app router.
 import Home from '../vue/app/Home/Home.vue';
+// import AppLayout from '../vue/layouts/AppLayout.vue';
 
 const history = createWebHistory();
 
@@ -14,6 +15,7 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home
+
     },
     todosRoutes,
 ]
@@ -22,4 +24,3 @@ export default createRouter({
     history,
     routes
 });
- 
