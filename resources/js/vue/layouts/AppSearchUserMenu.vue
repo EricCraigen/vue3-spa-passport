@@ -1,11 +1,9 @@
 <template>
 
     <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
-
         <button type="button"
                 class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-                @click="$emit('toggle-mobile-menu')">
-                <!--  -->
+                @click="this.$store.commit('toggleMenu')">
             <span class="sr-only">
                 Open sidebar
             </span>
@@ -29,7 +27,6 @@
                     </div>
                 </form>
             </div>
-{{ sidebarOpen }}
             <div class="ml-4 flex items-center md:ml-6">
                 <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="sr-only">
@@ -37,7 +34,6 @@
                     </span>
                     <BellIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
-                Profile dropdown
                 <Menu as="div" class="ml-3 relative">
                     <div>
                         <MenuButton class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -62,7 +58,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import {
     Dialog,
     DialogOverlay,
@@ -75,14 +70,8 @@ import {
 } from '@headlessui/vue'
 import {
     BellIcon,
-    CalendarIcon,
-    ChartBarIcon,
-    FolderIcon,
-    HomeIcon,
-    InboxIcon,
     MenuAlt2Icon,
     MenuIcon,
-    UsersIcon,
     XIcon,
 } from '@heroicons/vue/outline'
 import { SearchIcon } from '@heroicons/vue/solid'
@@ -94,33 +83,36 @@ const userNavigation = [
 ]
 
 export default {
-    props: {
-        sidebarOpen: Boolean
+    // props: {
+    //     sidebarOpen: Boolean
+    // },
+    components: {
+        // AppNavigation,
+        Dialog,
+        DialogOverlay,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
+        TransitionChild,
+        TransitionRoot,
+        BellIcon,
+        MenuAlt2Icon,
+        MenuIcon,
+        SearchIcon,
+        XIcon,
     },
-  components: {
-    // AppNavigation,
-    Dialog,
-    DialogOverlay,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    TransitionChild,
-    TransitionRoot,
-    BellIcon,
-    MenuAlt2Icon,
-    MenuIcon,
-    SearchIcon,
-    XIcon,
-  },
-//   setup() {
-//     const sidebarOpen = ref(false)
+    created() {
+        console.log(this.$store.state.sidebarOpen);
+    },
+    setup() {
+        // const sidebarOpen = ref(false)
 
-//     // return {
-//     //   navigation,
-//     //   userNavigation,
-//     //   sidebarOpen,
-//     // }
-//   },
+        return {
+        //   navigation,
+          userNavigation,
+        //   sidebarOpen,
+        }
+    },
 }
 </script>
