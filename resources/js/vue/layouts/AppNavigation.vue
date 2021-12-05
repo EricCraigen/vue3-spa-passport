@@ -2,7 +2,9 @@
 
   <div>
 
-    <TransitionRoot as="template" :show="sidebarOpen">
+      {{ sidebarOpen }}
+
+        <TransitionRoot as="template" :show="sidebarOpen">
 
     <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="sidebarOpen = false">
 
@@ -73,7 +75,6 @@
         </TransitionChild>
 
         <div class="flex-shrink-0 w-14">
-        <!-- Force sidebar to shrink to fit close icon -->
         </div>
 
     </Dialog>
@@ -153,6 +154,9 @@ const navigation = [
 ]
 
 export default {
+    props: {
+        sidebarOpen: Boolean
+    },
     components: {
         Dialog,
         DialogOverlay,
@@ -163,13 +167,16 @@ export default {
         HomeIcon,
         ClipboardListIcon
     },
-    setup() {
-        const sidebarOpen = ref(false)
-        console.log('setup navi');
-        return {
-        navigation,
-        sidebarOpen,
-        }
+    created() {
+        // console.log(this.props);
     },
+    // setup() {
+    //     const sidebarOpen = ref(false)
+    //     console.log('setup navi');
+    //     return {
+    //     navigation,
+    //     sidebarOpen,
+    //     }
+    // },
 }
 </script>

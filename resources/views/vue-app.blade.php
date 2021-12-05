@@ -21,16 +21,20 @@
     <body class="h-full">
 
         <div id="app" class="h-full">
+            {{-- <template> --}}
 
-            <app-navigation></app-navigation>
+                <app-navigation :sidebarOpen="appData.sidebarOpen" v-on:toggle-mobile-menu="toggleMobileMenu" ></app-navigation>
 
             <div class="md:pl-64 flex flex-col flex-1">
 
-                <app-search-user-menu />
+                <app-search-user-menu :sidebarOpen="appData.sidebarOpen" v-on:toggle-mobile-menu="toggleMobileMenu" />
 
             </div>
 
             <router-view class="md:pl-64 flex flex-col flex-1"></router-view>
+            {{-- </template> --}}
+
+
 
         </div>
 
