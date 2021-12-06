@@ -1,5 +1,5 @@
 <template>
-    <div class="flex ">
+    <div class="flex text-bone text-2xl">
             HOME HERE
     </div>
 </template>

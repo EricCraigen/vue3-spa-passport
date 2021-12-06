@@ -1,5 +1,5 @@
-const Todos = { template: '<div>Todos Here</div>' };
-const TodosList = { template: '<div>Todos List Here</div>' };
+import Todos from '../../vue/app/Todos/Todos.vue';
+import TodosList from '../../vue/app/Todos/components/TodosList.vue';
 
 const todosRoutes = {
     path: '/todos',

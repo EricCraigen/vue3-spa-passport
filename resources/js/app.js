@@ -4,6 +4,7 @@ require('./bootstrap');
 import router from './routes/Router';
 
 import { createApp } from 'vue';
+// import { useRoute } from 'vue-router';
 
 
 import AppNavigation from './vue/layouts/AppNavigation.vue';
@@ -31,11 +32,11 @@ const app = createApp({
         AppNavigation,
         AppSearchUserMenu,
     },
-    // computed: {
-    //     sidebarOpen() {
-    //         return store.state.sidebarOpen;
-    //     }
-    // },
+    computed: {
+        currentRoute() {
+            return useRoute().name;
+        },
+    },
     // data() {
     //     return {
     //         appData: {
@@ -49,20 +50,10 @@ const app = createApp({
     //     }
     // },
     // setup() {
-    //     const sidebarOpen = ref(false);
-    //     // console.log('vue-app setup()');
-    //     // console.log(router.currentRoute);
-    //     // const currentRoute = computed(() => {
-    //     //     return useRoute().name
-    //     // });
-    //     return {
-    //         // navigation,
-    //         sidebarOpen,
-    //         // currentRoute,
-    //     };
+    //      return currentRoute;
     // },
     created() {
-        // console.log(this.$store.state.sidebarOpen);
+        // console.log(useRoute().path);
     }
 });
 // app.use(Vuex);

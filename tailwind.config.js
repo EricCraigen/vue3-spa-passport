@@ -32,6 +32,7 @@ module.exports = {
   variants: {
     extend: {
         backgroundColor: ['active'],
+        rotate: ['active', 'group-hover'],
     },
   },
   plugins: [
