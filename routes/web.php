@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', function () {
+    return view('vue-app');
+})->where('any', '.*');
+
+// App::missing(function($exception)
+// {
+//     return View::make('notfound');
+// });
+
+// Route::view('/{any?}', 'welcome')
+//     ->where('any', '\*')
+//     ->name('vue-app');
