@@ -170,7 +170,7 @@ export default {
         },
     },
     created() {
-        console.log(this.$store.state.sidebarOpen);
+        // console.log(this.$store.state.sidebarOpen);
     },
     setup() {
         return {

@@ -16,8 +16,11 @@ export default createStore({
             state.todos += responseData;
         },
         storeTodo(state, todo) {
-            state.todos.push(todo);
-            console.log(state.todos);
+            state.todos.unshift(todo);
+        },
+        destroyTodo(state, todo) {
+            state.todos.splice(todo, 1);
+            console.log(todo);
         },
     },
 });

@@ -38,6 +38,8 @@ class TodoController extends Controller
         $new_todo = new Todo;
         $new_todo->name = $request->todo['name'];
         $new_todo->group = $request->todo['group'];
+        $new_todo->status = $request->todo['status'];
+        $new_todo->completed = false;
         $new_todo->save();
 
         return $new_todo;
@@ -95,7 +97,9 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        $existing_todo = Todo::find($todo['id']);
+        // return $todo;
+        // dd($todo);
+        $existing_todo = Todo::find(1);
         if ($existing_todo) {
             $existing_todo->delete();
             return "Todo successfully deleted!";

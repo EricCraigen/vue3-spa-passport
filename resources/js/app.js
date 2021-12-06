@@ -32,11 +32,11 @@ const app = createApp({
         AppNavigation,
         AppSearchUserMenu,
     },
-    computed: {
-        currentRoute() {
-            return useRoute().name;
-        },
-    },
+    // computed: {
+    //     currentRoute() {
+    //         return useRoute().name;
+    //     },
+    // },
     // data() {
     //     return {
     //         appData: {

@@ -5,6 +5,7 @@ const todosRoutes = {
     path: '/todos',
     name: 'todos',
     component: Todos,
+    props: true,
     children: [
         {
             path: '/edit',

@@ -23,26 +23,36 @@
                 </div>
                 <div class="mt-6 relative flex-1 px-4 sm:px-6">
                   <!-- Replace with your content -->
-                  <div class="absolute inset-0 px-4 sm:px-6 text-bone">
+                  <form @submit.prevent="addTodo()" class="flex flex-col h-full items-center absolute inset-0 px-4 sm:px-6">
                         <div class="flex flex-col w-full justify-center items-center gap-5">
                             <input class="bg-jet bg-opacity-50 w-full rounded-md shadow-md text-bone" type="text" v-model="todo.name" placeholder="Learn Vue Routing" />
                             <input class="bg-jet bg-opacity-50 w-full rounded-md shadow-md text-bone" type="text" v-model="todo.group" placeholder="Vue.js" />
                         </div>
-                        <div class="flex items-center justify-between">
-                                <button @click.stop="this.$emit('todoSlideOverClosed')" class="inline-flex items-center justify-center px-2 py-1 bg-rose text-lg font-semibold rounded-md shadow-md border border-raisin hover:bg-red-600">
-                            Close
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bone ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </button>
-                        <button @click.stop="addTodo()" class="inline-flex items-center justify-center px-2 py-1 bg-moss text-lg font-semibold rounded-md shadow-md border border-raisin hover:bg-glaucous">
-                            Submit
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bone ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </button>
+                        <div class="flex w-full items-center justify-between pt-5">
+                            <h3 class="text-bone text-md font-bold">
+                                Status:
+                            </h3>
+                            <select class="bg-raisin bg-opacity-50 rounded-md shadow-md text-bone font-bold" name="todo.status" id="todo.status" v-model="todo.status">
+                                <option value="1">Normal</option>
+                                <option value="2">Urgent</option>
+                                <option value="3">Snoozed</option>
+                            </select>
                         </div>
-                  </div>
+                        <div class="flex items-center justify-between w-full mt-5">
+                                <button @click.stop="this.$emit('todoSlideOverClosed')" class="inline-flex items-center justify-center px-2 py-1 bg-rose text-lg font-semibold rounded-md shadow-md border border-raisin hover:bg-red-600">
+                                Close
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bone ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                            <button type="submit" class="inline-flex items-center justify-center px-2 py-1 bg-moss text-lg font-semibold rounded-md shadow-md border border-raisin hover:bg-glaucous">
+                                Submit
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bone ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                  </form>
                   <!-- /End replace -->
                 </div>
               </div>
@@ -56,7 +66,17 @@
 
 <script>
 // import { ref } from 'vue'
-import { Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import {
+    Dialog,
+    DialogOverlay,
+    DialogTitle,
+    TransitionChild,
+    TransitionRoot,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+} from '@headlessui/vue'
 import { XIcon } from '@heroicons/vue/outline'
 
 export default {
@@ -78,12 +98,17 @@ export default {
         TransitionChild,
         TransitionRoot,
         XIcon,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
     },
     methods: {
         addTodo() {
             if (this.todo.name == '') {
                 return;
             }
+            // console.log(this.todo);
 
             axios.post('api/todo/store', {
                 todo: this.todo
